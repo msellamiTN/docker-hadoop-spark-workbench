@@ -71,7 +71,7 @@ services:
       ports:
       - "8888:8888"
       volumes:
-        - ./hue.ini:/usr/share/hue/desktop/conf/z-hue.ini
+        - ./hue/z-hue.ini:/usr/share/hue/desktop/conf/z-hue.ini
       depends_on:
       - "database"
   database:
