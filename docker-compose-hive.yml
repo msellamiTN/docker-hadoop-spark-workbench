@@ -1,4 +1,4 @@
-version: '2' 
+version: '3.7' 
 services:
   namenode:
     image: bde2020/hadoop-namenode:1.1.0-hadoop2.8-java8
@@ -30,6 +30,7 @@ services:
       - "HIVE_CORE_CONF_javax_jdo_option_ConnectionURL=jdbc:postgresql://hive-metastore/metastore"
     ports:
       - "10000:10000"
+      
   hive-metastore:
     image: bde2020/hive:2.1.0-postgresql-metastore
     container_name: hive-metastore
@@ -63,7 +64,7 @@ services:
       - ./hadoop-hive.env
     ports:
       - 9001:9001
- database:
+  database:
     image: mysql:8.0.17
     deploy:
       mode: replicated
@@ -85,8 +86,7 @@ services:
         MYSQL_USER: user
         MYSQL_PASSWORD: secret
     restart: always
-    networks:
-      - cluster
+ 
 
   hue:
     image: gethue/hue:latest
@@ -110,5 +110,7 @@ services:
       DB_USER: user
       DB_PASSWORD: secret
     restart: always
+    
 volumes:
   data:
+  hadoop-mysql:
